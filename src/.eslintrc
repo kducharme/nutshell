@@ -8,9 +8,10 @@
         },
         "rules": {
             "semi": 0,
-            "no-trailing-spaces:" [2, {
-              "skipBlankLines": true
-            }]
+            "no-trailing-spaces": [
+                0,
+                { "skipBlankLines": true }
+            ],
             "eqeqeq": 2
         }
     }

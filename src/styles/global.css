@@ -1,0 +1,49 @@
+:root {
+    --primaryColor: #2196F3;
+    --secondaryColor: #101D42;
+    --backgroundColor: white;
+    --fillColor: #F7F8F9;
+    --borderColor: #DFDFDF;
+}
+
+h1, h2, h3, h4, h5, p, a, button {
+    font-family: 'Lato';
+}
+
+button:hover, button:active, button:focus, a:hover, a:focus, input:focus, input:active  {
+    cursor: pointer;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    outline: none;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    border-bottom: 1px solid var(--borderColor);
+    background-color: var(--fillColor);
+    flex-basis: 130px;
+}
+
+.content {
+    display: flex;
+    height: calc(100vh - 130px);
+}
+
+.content__data {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.content__chat {
+    width: 30%;
+    border-left: 1px solid var(--borderColor);
+}
+

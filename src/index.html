@@ -1,13 +1,37 @@
-    <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="description" content="Nashville Software School Exercise" />
-      <title>Nashville Software School Exercise</title>
-      <link rel="stylesheet" href="./styles/filename.css">
-    </head>
-    <body>
-      <script src="./bundle.js"></script>
-    </body>
-    </html>
-  
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Nutshell" />
+  <title>Nutshell</title>
+  <link rel="stylesheet" href="./styles/global.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato|Oxygen|Lato:300,400,700,900" rel="stylesheet">
+</head>
+
+<body>
+
+  <section id='header' class='header'></section>
+  <section id='content' class='content'>
+    <section id='data' class='content__data'></section>
+    <section id='chat' class='content__chat'></section>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-database.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDjaVI-M7U2lNWYIoUJg8i3cxFlEsd9dUk",
+      authDomain: "nutshell-kd.firebaseapp.com",
+      databaseURL: "https://nutshell-kd.firebaseio.com",
+      projectId: "nutshell-kd",
+      storageBucket: "nutshell-kd.appspot.com",
+      messagingSenderId: "680098393444"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="./bundle.js"></script>
+</body>
+
+</html>
