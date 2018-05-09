@@ -1,18 +1,19 @@
-    {
-        "parserOptions": {
-            "ecmaVersion": 6,
-            "sourceType": "module",
-            "ecmaFeatures": {
-                "jsx": true
-            }
-        },
-        "rules": {
-            "semi": 0,
-            "no-trailing-spaces": [
-                0,
-                { "skipBlankLines": true }
-            ],
-            "eqeqeq": 2
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
         }
+    },
+    "rules": {
+        "semi": 0,
+        "no-trailing-spaces": [
+            0,
+            {
+                "skipBlankLines": true
+            }
+        ],
+        "eqeqeq": 2
     }
-  
+}

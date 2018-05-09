@@ -1,13 +1,23 @@
 :root {
     --primaryColor: #2196F3;
     --secondaryColor: #101D42;
+    --accentColor: #E94F37;
+    --accentHoverColor: #C6351F;
     --backgroundColor: white;
     --fillColor: #F7F8F9;
-    --borderColor: #DFDFDF;
+    --borderColor: #D7D8DB;
 }
 
 h1, h2, h3, h4, h5, p, a, button {
     font-family: 'Lato';
+}
+
+button {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
 }
 
 button:hover, button:active, button:focus, a:hover, a:focus, input:focus, input:active  {
@@ -25,25 +35,58 @@ body {
     flex-direction: column;
 }
 
-.header {
-    border-bottom: 1px solid var(--borderColor);
-    background-color: var(--fillColor);
-    flex-basis: 130px;
+/* Navigation */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondaryColor);
+    height: 50px;
+    padding: 0 40px 0 40px;
 }
+
+nav > .logo {
+    width: 107px;
+    height: 31px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user > p {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    padding-right: 8px;
+}
+
+.user > img {
+    height: 17px;
+    width: 17px;
+    margin: 2px 0 0 0;
+}
+
+/* Primary content */
 
 .content {
     display: flex;
-    height: calc(100vh - 130px);
+    height: calc(100vh - 50px);
 }
 
 .content__data {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: calc(100vw - 380px);
 }
 
-.content__chat {
-    width: 30%;
+.content__tasks {
+    flex-basis: 380px;
     border-left: 1px solid var(--borderColor);
+    background-color: var(--fillColor);
 }
 
