@@ -42,9 +42,16 @@ nav > img {
 }
 
 nav > p {
+    display: flex;
+    align-items: center;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     color: white;
+}
+
+nav > .material-icons {
+    color: white;
+    margin: 2px 0 0 0;
 }
 
 .content {
