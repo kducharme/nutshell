@@ -2,10 +2,39 @@
 
 .header {
     display: flex;
-    
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid var(--borderColor);
     height: 67px;
     margin: 0 110px 0 110px;
+}
+
+.header__filterList {
+    display: flex;
+    flex-direction: space-between;
+    width: 60%;
+}
+
+.header__filterList--block {
+    display: flex;
+    padding-right: 50px;
+}
+
+.header__filterList--block:hover {
+    cursor: pointer;
+}
+
+.header__filterList--counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #E5E8EC;
+    color: #888EA1;
+    padding: 0 10px 0 10px;
+    border-radius: 4px;
+    margin-left: 8px;
 }
 
 .header__button {
@@ -15,6 +44,10 @@
     height: 40px;
     background-color: var(--accentColor);
     padding: 2px 16px 2px 20px;
+}
+
+.header__button:hover {
+    background-color: var(--accentHoverColor);
 }
 
 .header__button > img {
