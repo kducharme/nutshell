@@ -25,25 +25,42 @@ body {
     flex-direction: column;
 }
 
-.header {
-    border-bottom: 1px solid var(--borderColor);
-    background-color: var(--fillColor);
-    flex-basis: 130px;
+/* Navigation */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondaryColor);
+    height: 50px;
+    padding: 0 40px 0 40px;
+}
+
+nav > img {
+    width: 107px;
+    height: 31px;
+}
+
+nav > p {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
 }
 
 .content {
     display: flex;
-    height: calc(100vh - 130px);
+    height: calc(100vh - 50px);
 }
 
 .content__data {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: calc(100vw - 380px);
 }
 
-.content__chat {
-    width: 30%;
+.content__tasks {
+    flex-basis: 380px;
     border-left: 1px solid var(--borderColor);
+    background-color: var(--fillColor);
 }
 
