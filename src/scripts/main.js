@@ -1,3 +1,3 @@
-const contentHeader = require('./interface/contentHeader');
+const headerManager = require('./interface/headerManager');
 
-contentHeader()
+headerManager.createStructure()

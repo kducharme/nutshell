@@ -1,0 +1,25 @@
+/* Left column content header */
+
+.header {
+    display: flex;
+    
+    border-bottom: 1px solid var(--borderColor);
+    height: 67px;
+    margin: 0 110px 0 110px;
+}
+
+.header__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    background-color: var(--accentColor);
+    padding: 2px 16px 2px 20px;
+}
+
+.header__button > img {
+    margin: 2px 0 0 0;
+    padding-left: 15px;
+    height: 17px;
+    width: 17px;
+}

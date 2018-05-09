@@ -1,13 +1,22 @@
 :root {
     --primaryColor: #2196F3;
     --secondaryColor: #101D42;
+    --accentColor: #E94F37;
     --backgroundColor: white;
     --fillColor: #F7F8F9;
-    --borderColor: #DFDFDF;
+    --borderColor: #D7D8DB;
 }
 
 h1, h2, h3, h4, h5, p, a, button {
     font-family: 'Lato';
+}
+
+button {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
 }
 
 button:hover, button:active, button:focus, a:hover, a:focus, input:focus, input:active  {
@@ -36,23 +45,32 @@ nav {
     padding: 0 40px 0 40px;
 }
 
-nav > img {
+nav > .logo {
     width: 107px;
     height: 31px;
 }
 
-nav > p {
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user > p {
     display: flex;
     align-items: center;
     font-size: 14px;
     font-weight: 500;
     color: white;
+    padding-right: 8px;
 }
 
-nav > .material-icons {
-    color: white;
+.user > img {
+    height: 17px;
+    width: 17px;
     margin: 2px 0 0 0;
 }
+
+/* Primary content */
 
 .content {
     display: flex;
