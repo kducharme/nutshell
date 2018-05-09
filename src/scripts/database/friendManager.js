@@ -36,30 +36,6 @@ module.exports = friendManager;
 
 /*
 
-Friends
-- Add friend
-- Load friend
-- Delete friend
-- Update friend
-
-Events
-- Add event
-- Load event
-- Delete event
-- Update event
-
-Articles
-- Add article
-- Load article
-- Delete article
-- Update article
-
-Tasks
-- Add task
-- Load task
-- Delete task
-- Update task
-
 Chat
 - Add task
 - Load task
