@@ -81,11 +81,11 @@ nav > .logo {
 .content__data {
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 380px);
+    width: calc(100vw - 360px);
 }
 
 .content__tasks {
-    flex-basis: 380px;
+    flex-basis: 360px;
     border-left: 1px solid var(--borderColor);
     background-color: var(--fillColor);
 }
