@@ -20,7 +20,7 @@ button {
     border-radius: 3px;
 }
 
-button:hover, button:active, button:focus, a:hover, a:focus, input:focus, input:active  {
+button:hover, button:active, button:focus, a:hover, a:focus, input:focus, input:active, div:active, div:focus  {
     cursor: pointer;
     -webkit-transition: none;
     -moz-transition: none;

@@ -7,6 +7,7 @@
     border-bottom: 1px solid var(--borderColor);
     height: 67px;
     margin: 0 90px 0 90px;
+    min-width: 500px;
 }
 
 /* Filters */
