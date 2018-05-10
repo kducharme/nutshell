@@ -6,7 +6,7 @@
     align-items: center;
     border-bottom: 1px solid var(--borderColor);
     height: 67px;
-    margin: 0 110px 0 110px;
+    margin: 0 90px 0 90px;
 }
 
 /* Filters */
@@ -95,17 +95,20 @@
     overflow-y: hidden;
     z-index: 999;
     width: 120px;
-    padding: 22px 20px 20px 22px;
+    padding: 14px 2px 14px 16px;
 }
 
 .dropdown__option {
+    display: flex;
+    align-items: center;
     margin: 0;
-    height: 25px;
-    margin: 0 -20px 0 -25px;
-    padding: 0 20px 0 25px;
+    height: 30px;
+    margin: 0 -18px 0 -18px;
+    padding: 2px 0 2px 18px;
 }
 
 .dropdown__option:hover {
+    cursor: pointer;
     background-color: var(--primaryColor);
     color: white;
 }
