@@ -6,7 +6,7 @@
     align-items: center;
     border-bottom: 1px solid var(--borderColor);
     height: 67px;
-    margin: 0 110px 0 110px;
+    margin: 0 90px 0 90px;
 }
 
 /* Filters */
@@ -20,8 +20,8 @@
 .header__tabList--block {
     display: flex;
     justify-content: flex-start;
-    width: 150px;
-    min-width: 120px;
+    width: 120px;
+    min-width: 100px;
 }
 
 .header__tabList--block:hover {
@@ -43,6 +43,7 @@
 
 .header__tabList--label {
     color: #888EA1;
+    font-size: 14px;
 }
 
 .activeTab {
@@ -94,7 +95,22 @@
     overflow-y: hidden;
     z-index: 999;
     width: 120px;
-    padding: 25px 20px 20px 25px;
+    padding: 14px 2px 14px 16px;
+}
+
+.dropdown__option {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 30px;
+    margin: 0 -18px 0 -18px;
+    padding: 2px 0 2px 18px;
+}
+
+.dropdown__option:hover {
+    cursor: pointer;
+    background-color: var(--primaryColor);
+    color: white;
 }
 
 .dropdown__background{ 

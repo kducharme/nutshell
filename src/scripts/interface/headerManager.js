@@ -58,7 +58,6 @@ const headerManager = Object.create(null, {
             $('.header__tabList--counter').removeClass('activeCounter');
             $activeLabel.classList.add('activeTab');
             $activeCounter.classList.add('activeCounter');
-            console.log($activeTab)
         }
     },
     countTabs: {
@@ -77,19 +76,37 @@ const headerManager = Object.create(null, {
     },
     createDropdown: {
         value: function () {
-            const body = document.querySelector('body')
+            const dropdownFactory = require('../factories/dropdownFactory');
+            // Requirements for dropdownFactory
             const options = ['Friend', 'Event', 'Article', 'Task']
-            const background = document.createElement('span');
-            background.classList = 'dropdown__background';
-            background.addEventListener('click', function() {
+            const button = $('.header__button');
+            const event = (function() {
                 headerManager.closeDropdown();
             })
-            const dropdown = document.createElement('span');
-            dropdown.classList = 'dropdown';
-            dropdown.textContent = 'hey hey hey'
+            const $body = $('body')
+            const dropdown = dropdownFactory(button, options, event, 15, -5);
 
-            body.appendChild(background);
-            $('.header__button').append(dropdown)
+            $body.append(dropdown)
+
+
+            // const background = document.createElement('span');
+            // background.classList = 'dropdown__background';
+            // background.addEventListener('click', 
+            // const dropdown = document.createElement('span');
+            // dropdown.classList = 'dropdown';
+            // dropdown.style.left = `${buttonPosition.left + 15}px`;
+            // dropdown.style.top = `${buttonPosition.top - 5}px`;
+
+            // options.forEach(o => {
+            //     const option = document.createElement('p');
+            //     option.textContent = o;
+            //     option.classList = 'dropdown__option'
+            //     dropdown.appendChild(option)  
+            // })
+
+
+            // body.appendChild(background);
+            // body.appendChild(dropdown);
         }
     },
     closeDropdown: {
