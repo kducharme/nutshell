@@ -12,7 +12,7 @@ const headerManager = Object.create(null, {
             const button = headerManager.addButton();
             const tabs = headerManager.addTabs();
 
-            // Appends everything to the header
+            // Appends components to the header
             structure.appendChild(tabs)
             structure.appendChild(button)
             fragment.appendChild(structure)
@@ -88,17 +88,19 @@ const headerManager = Object.create(null, {
     createDropdown: {
         value: function () {
             const dropdownFactory = require('../factories/dropdownFactory');
+            const modalManager = require('../modal/modalManager');
             const $body = $('body')
 
             // Requirements for dropdownFactory
             const options = ['Friend', 'Event', 'Article', 'Task']
+            const optionEvent = 'modal';
             const button = $('.header__button');
             const event = (function() {
                 headerManager.closeDropdown();
             })
 
             // Calling factory and passing arguments
-            const dropdown = dropdownFactory(button, options, event, 15, -5);
+            const dropdown = dropdownFactory(button, options, event, 15, -5, optionEvent);
 
             // Appends dropdown to the body
             $body.append(dropdown)
