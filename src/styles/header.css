@@ -20,8 +20,8 @@
 .header__tabList--block {
     display: flex;
     justify-content: flex-start;
-    width: 150px;
-    min-width: 120px;
+    width: 120px;
+    min-width: 100px;
 }
 
 .header__tabList--block:hover {
@@ -43,6 +43,7 @@
 
 .header__tabList--label {
     color: #888EA1;
+    font-size: 14px;
 }
 
 .activeTab {
@@ -94,7 +95,19 @@
     overflow-y: hidden;
     z-index: 999;
     width: 120px;
-    padding: 25px 20px 20px 25px;
+    padding: 22px 20px 20px 22px;
+}
+
+.dropdown__option {
+    margin: 0;
+    height: 25px;
+    margin: 0 -20px 0 -25px;
+    padding: 0 20px 0 25px;
+}
+
+.dropdown__option:hover {
+    background-color: var(--primaryColor);
+    color: white;
 }
 
 .dropdown__background{ 

@@ -58,7 +58,6 @@ const headerManager = Object.create(null, {
             $('.header__tabList--counter').removeClass('activeCounter');
             $activeLabel.classList.add('activeTab');
             $activeCounter.classList.add('activeCounter');
-            console.log($activeTab)
         }
     },
     countTabs: {
@@ -78,6 +77,7 @@ const headerManager = Object.create(null, {
     createDropdown: {
         value: function () {
             const body = document.querySelector('body')
+            const buttonPosition = $('.header__button').position()
             const options = ['Friend', 'Event', 'Article', 'Task']
             const background = document.createElement('span');
             background.classList = 'dropdown__background';
@@ -86,10 +86,19 @@ const headerManager = Object.create(null, {
             })
             const dropdown = document.createElement('span');
             dropdown.classList = 'dropdown';
-            dropdown.textContent = 'hey hey hey'
+            dropdown.style.left = `${buttonPosition.left + 15}px`;
+            dropdown.style.top = `${buttonPosition.top - 4}px`;
+
+            options.forEach(o => {
+                const option = document.createElement('p');
+                option.textContent = o;
+                option.classList = 'dropdown__option'
+                dropdown.appendChild(option)  
+            })
+
 
             body.appendChild(background);
-            $('.header__button').append(dropdown)
+            body.appendChild(dropdown);
         }
     },
     closeDropdown: {
