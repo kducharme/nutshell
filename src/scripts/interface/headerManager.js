@@ -5,12 +5,14 @@ const buttonFactory = require('../factories/buttonFactory');
 const headerManager = Object.create(null, {
     createStructure: {
         value: function () {
+            // Creates the header structure
             const fragment = document.createDocumentFragment();
             const structure = document.createElement('span');
             structure.classList = 'header';
             const button = headerManager.addButton();
             const tabs = headerManager.addTabs();
 
+            // Appends components to the header
             structure.appendChild(tabs)
             structure.appendChild(button)
             fragment.appendChild(structure)
@@ -19,9 +21,12 @@ const headerManager = Object.create(null, {
     },
     addTabs: {
         value: function () {
+            // Creates the container for the tabs
             const structure = document.createElement('span');
             const tabs = ['Friends', 'Events', 'Articles']
             structure.classList = 'header__tabList';
+
+            // Adds the tab content to the container
             tabs.forEach(tab => {
                 const block = document.createElement('span');
                 block.classList = 'header__tabList--block';
@@ -46,14 +51,19 @@ const headerManager = Object.create(null, {
     },
     activeTab: {
         value: function (e) {
+            // Selecting the default active tab (friends)
             let $activeTab = $('#Friends');
             let $activeLabel = $('#Friends')[0].childNodes[0];
             let $activeCounter = $('#Friends')[0].childNodes[1];
+
+            // If a tab has been clicked, it toggles active tab
             if (e) {
                 $activeTab = e.currentTarget;
                 $activeLabel = $activeTab.childNodes[0];
                 $activeCounter = $activeTab.childNodes[1];
             }
+
+            // Adds styling to the active tab
             $('.header__tabList--label').removeClass('activeTab');
             $('.header__tabList--counter').removeClass('activeCounter');
             $activeLabel.classList.add('activeTab');
@@ -69,6 +79,7 @@ const headerManager = Object.create(null, {
     },
     addButton: {
         value: function () {
+            // Creating a button via buttonFactory
             const button = buttonFactory('header__button', 'Add new', headerManager.createDropdown)
             button.innerHTML += `<img src='img/arrow-down.svg'>`;
             return button;
@@ -77,36 +88,22 @@ const headerManager = Object.create(null, {
     createDropdown: {
         value: function () {
             const dropdownFactory = require('../factories/dropdownFactory');
+            const modalManager = require('../modal/modalManager');
+            const $body = $('body')
+
             // Requirements for dropdownFactory
             const options = ['Friend', 'Event', 'Article', 'Task']
+            const optionEvent = 'modal';
             const button = $('.header__button');
             const event = (function() {
                 headerManager.closeDropdown();
             })
-            const $body = $('body')
-            const dropdown = dropdownFactory(button, options, event, 15, -5);
 
+            // Calling factory and passing arguments
+            const dropdown = dropdownFactory(button, options, event, 15, -5, optionEvent);
+
+            // Appends dropdown to the body
             $body.append(dropdown)
-
-
-            // const background = document.createElement('span');
-            // background.classList = 'dropdown__background';
-            // background.addEventListener('click', 
-            // const dropdown = document.createElement('span');
-            // dropdown.classList = 'dropdown';
-            // dropdown.style.left = `${buttonPosition.left + 15}px`;
-            // dropdown.style.top = `${buttonPosition.top - 5}px`;
-
-            // options.forEach(o => {
-            //     const option = document.createElement('p');
-            //     option.textContent = o;
-            //     option.classList = 'dropdown__option'
-            //     dropdown.appendChild(option)  
-            // })
-
-
-            // body.appendChild(background);
-            // body.appendChild(dropdown);
         }
     },
     closeDropdown: {

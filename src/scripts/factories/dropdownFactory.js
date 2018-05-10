@@ -1,6 +1,6 @@
 const $ = require('jquery');
 
-const dropdownFactory = (button, options, eventListener, addLeft, addTop) => {
+const dropdownFactory = (button, options, eventListener, addLeft, addTop, optionEvent) => {
     const structure = document.createElement('span');
     const buttonPosition = $(button).position()
 
@@ -22,6 +22,12 @@ const dropdownFactory = (button, options, eventListener, addLeft, addTop) => {
         const option = document.createElement('p')
         option.textContent = o;
         option.classList = 'dropdown__option';
+        option.setAttribute('id', `m${o}`)
+        option.addEventListener('click', function (e) {
+            const modalManager = require('../modal/modalManager');
+            const key = e.target.id;
+            modalManager[key]()
+        })
         dropdown.appendChild(option);
     })
     structure.appendChild(bg);
