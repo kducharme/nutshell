@@ -1,0 +1,87 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+    border: 1px solid var(--inputBorder);
+    box-shadow: 0 2px 5px rgba(0,0,0,.12);
+    border-radius: 4px;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    flex-basis: 400px;
+    min-width: 340px;
+    max-width: 450px;
+    margin-top: 120px;
+    padding: 25px 25px 35px 30px;
+}
+
+.modal__content--title {
+    margin: -10px 0 0 0;
+    color: var(--secondaryColor);
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+
+.modal__content--details {
+    margin: 0;
+    color: var(--secondaryColor);
+    opacity: .8;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    padding-bottom: 20px;
+}
+
+.modal__content--label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.modal__content--input {
+    padding-left: 15px;
+    height: 35px;
+    font-size: 13px;
+    border: 1px solid var(--borderColor);
+    border-radius: 3px;
+    width: 96%;
+    margin: 8px 0 15px 0;
+}
+
+.modal__content--input:active, .modal__content--input:focus {
+    border: 1px solid var(--accentColor);
+}
+
+.modal__content--button {
+    height: 40px;
+    background-color: var(--accentColor);
+    width: 120px;
+    padding: 2px 16px 2px 16px;
+    margin-top: 10px;
+    float: right;
+}
+
+.modal > .material-icons{
+    display: flex;
+    justify-content: flex-end;
+    color: var(--secondaryColor);
+    font-size: 26px;
+}
+
+.modal > .material-icons:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.modal__bg {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(29, 29, 29, 0.8);
+}
