@@ -1,0 +1,13 @@
+.friends {
+    display: flex;
+}
+
+.friends__list {
+    border: 1px solid var(--borderColor);
+    border-radius: 3px;
+}
+
+.friends__messages {
+    border: 1px solid var(--borderColor);
+    border-radius: 3px;
+}

@@ -32,7 +32,7 @@ const headerManager = Object.create(null, {
                 block.classList = 'header__tabList--block';
                 block.setAttribute('id', tab)
                 block.addEventListener('click', function(e) {
-                    headerManager.activeTab(e)
+                    headerManager.navigateTabs(e)
                 })
                 const tabName = document.createElement('p');
                 tabName.classList = 'header__tabList--label'
@@ -49,7 +49,7 @@ const headerManager = Object.create(null, {
             return structure;
         }
     },
-    activeTab: {
+    navigateTabs: {
         value: function (e) {
             // Selecting the default active tab (friends)
             let $activeTab = $('#Friends');
