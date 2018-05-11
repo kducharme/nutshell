@@ -5,11 +5,13 @@
     --accentHoverColor: #C6351F;
     --backgroundColor: white;
     --fillColor: #F7F8F9;
+    --messageFill: rgb(241, 242, 243);
     --borderColor: #D7D8DB;
 }
 
-h1, h2, h3, h4, h5, p, a, label, button {
+h1, h2, h3, h4, h5, p, a, label, button, span {
     font-family: 'Lato';
+    color: var(--secondaryColor);
 }
 
 button {
@@ -27,6 +29,10 @@ button:hover, button:active, button:focus, a:hover, a:focus, input:focus, input:
     -ms-transition: none;
     -o-transition: none;
     outline: none;
+}
+
+input:active, input:focus {
+    cursor: text;
 }
 
 body {

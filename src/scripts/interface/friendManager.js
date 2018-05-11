@@ -51,8 +51,38 @@ const friendManager = Object.create(null, {
             const $writeArea = $('<input>');
             $writeArea.attr('placeholder', 'Enter message');
             $writeArea.addClass('friends__messages--write');
-
+            $writeArea.keypress(function (e) {
+                if ($writeArea.val()) {
+                    if (e.which === 13) {
+                        friendManager.postMessages($writeArea.val());
+                        friendManager.clearWriteArea();
+                        friendManager.scrollToBottom();
+                    }
+                }
+            })
             return $writeArea;
+        }
+    },
+    postMessages: {
+        value: function ($text) {
+            const $message = $('<span>');
+            $message.addClass('message')
+            $message.text($text);
+            $('.friends__messages--post').append($message);
+
+            // TODO - SEND NEW MESSAGE TO DB
+            // TODO - GET USER NAME
+            // TODO - GET DATE
+        }
+    },
+    scrollToBottom: {
+        value: function () {
+            $('.friends__messages--post').scrollTop(9999);
+        }
+    },
+    clearWriteArea: {
+        value: function () {
+            $('.friends__messages--write').val('');
         }
     }
 })
