@@ -1,4 +1,7 @@
 const headerManager = require('./interface/headerManager');
+const friendManager = require('./interface/friendManager');
 
-headerManager.createStructure()
-headerManager.activeTab()
+headerManager.createStructure();
+headerManager.navigateTabs();
+
+friendManager.friendBlock();
