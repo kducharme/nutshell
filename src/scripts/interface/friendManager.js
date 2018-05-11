@@ -73,6 +73,8 @@ const friendManager = Object.create(null, {
             // TODO - SEND NEW MESSAGE TO DB
             // TODO - GET USER NAME
             // TODO - GET DATE
+            // TODO - ADD DELETE
+            // TODO - ADD EDIT
         }
     },
     scrollToBottom: {
