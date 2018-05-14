@@ -1,6 +1,6 @@
 const $ = require('jquery');
 
-const taskManager = Object.create(null, {
+const taskDatabase = Object.create(null, {
     getTasks: {
         value: function () {
             return $.ajax('https://nutshell-kd.firebaseio.com/tasks.json?print=pretty')
@@ -33,7 +33,7 @@ const taskManager = Object.create(null, {
     }
 })
 
-module.exports = taskManager;
+module.exports = taskDatabase;
 
 /*
 

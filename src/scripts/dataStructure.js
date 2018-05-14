@@ -35,11 +35,13 @@ const database = {
             ],
             myArticles: [
                 {
+                    articleId: 1,
                     title: 'patriots win world series',
                     summary: 'really great article',
                     url: 'google.com/patriots'
                 },
                 {
+                    articleId: 2,
                     title: 'friends is a cool show',
                     summary: 'talked about how the show is cool',
                     url: 'google.com/friends'
@@ -57,11 +59,13 @@ const database = {
             ],
             tasks: [
                 {
+                    taskId: 1,
                     name: 'go to the store',
                     due: 'April 29, 2018',
                     complete: true
                 },
                 {
+                    taskId: 2,
                     name: 'learn how to code',
                     due: 'Dec 25, 2018',
                     complete: false
@@ -69,20 +73,17 @@ const database = {
             ],
             chats: [
                 {
-                    userId: 2,
+                    chatId: 1,
                     message: 'Hello world',
-                    date: 'April 21, 2018'
+                    date: 'April 21, 2018',
+                    userId: 2
                 },
                 {
-                    userId: 4,
-                    message: 'Hello world',
-                    date: 'April 23, 2018'
-                },
-                {
-                    userId: 3,
-                    message: 'Hello world',
-                    date: 'April 25, 2018'
-                },
+                    chatId: 2,
+                    message: 'Hi there',
+                    date: 'April 23, 2018',
+                    userId: 4
+                }
             ]
         }
     ]

@@ -56,9 +56,9 @@
 .modal__content--button {
     height: 40px;
     background-color: var(--accentColor);
-    width: 120px;
     padding: 2px 16px 2px 16px;
     margin-top: 10px;
+    min-width: 110px;
     float: right;
 }
 
@@ -88,4 +88,18 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(29, 29, 29, 0.8);
+}
+
+/* Full height/width modal */
+
+.modal__full {
+    margin: 0;
+}
+
+.modal__full--bg {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    opacity: 1;
 }

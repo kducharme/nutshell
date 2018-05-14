@@ -1,6 +1,6 @@
 const $ = require('jquery');
 
-const friendManager = Object.create(null, {
+const friendDatabase = Object.create(null, {
     getFriend: {
         value: function () {
             return $.ajax('https://nutshell-kd.firebaseio.com/friends.json?print=pretty')
@@ -33,7 +33,7 @@ const friendManager = Object.create(null, {
     }
 })
 
-module.exports = friendManager;
+module.exports = friendDatabase;
 
 /*
 

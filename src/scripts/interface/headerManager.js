@@ -6,47 +6,51 @@ const headerManager = Object.create(null, {
     createStructure: {
         value: function () {
             // Creates the header structure
-            const fragment = document.createDocumentFragment();
-            const structure = document.createElement('span');
-            structure.classList = 'header';
-            const button = headerManager.addButton();
-            const tabs = headerManager.addTabs();
+            const $structure = $('<span>')
+                .addClass('header');
+
+            // Gets data 
+            const $button = headerManager.addButton();
+            const $tabs = headerManager.addTabs();
 
             // Appends components to the header
-            structure.appendChild(tabs)
-            structure.appendChild(button)
-            fragment.appendChild(structure)
-            $printArea.append(fragment);
+            $structure.append($tabs, $button)
+            $printArea.append($structure);
         }
     },
     addTabs: {
         value: function () {
             // Creates the container for the tabs
-            const structure = document.createElement('span');
-            const tabs = ['Friends', 'Events', 'Articles']
-            structure.classList = 'header__tabList';
+            $structure = $('<span>')
+                .addClass('header__tabList');
+
+            const tabs = ['Friends', 'Tasks', 'Events', 'Articles']
 
             // Adds the tab content to the container
             tabs.forEach(tab => {
-                const block = document.createElement('span');
-                block.classList = 'header__tabList--block';
-                block.setAttribute('id', tab)
-                block.addEventListener('click', function(e) {
-                    headerManager.navigateTabs(e)
-                })
-                const tabName = document.createElement('p');
-                tabName.classList = 'header__tabList--label'
-                tabName.textContent = tab;
+                const $block = $('<span>')
+                    .addClass('header__tabList--block')
+                    .attr('id', tab)
+                    .on('click', function (e) {
+                        headerManager.navigateTabs(e)
+                        headerManager.showContent(e);
+                    })
 
-                const counter = document.createElement('p');
-                counter.classList = 'header__tabList--counter'
-                counter.textContent = headerManager.countTabs();
-                
-                block.appendChild(tabName)
-                block.appendChild(counter)
-                structure.appendChild(block)
+                // Creates name of tab
+                const $tabName = $('<p>')
+                    .addClass('header__tabList--label')
+                    .text(tab);
+
+                // Counts total activity within tab
+                const $counter = $('<p>')
+                    .addClass('header__tabList--counter')
+                    .text(headerManager.countTabs())
+
+                // Appends everything to the block
+                $block.append($tabName, $counter)
+                $structure.append($block)
             })
-            return structure;
+            return $structure;
         }
     },
     navigateTabs: {
@@ -68,6 +72,39 @@ const headerManager = Object.create(null, {
             $('.header__tabList--counter').removeClass('activeCounter');
             $activeLabel.classList.add('activeTab');
             $activeCounter.classList.add('activeCounter');
+        }
+    },
+    showContent: {
+        value: function (e) {
+            const taskManager = require('./taskManager');
+            const articleManager = require('./articleManager');
+            const eventManager = require('./eventManager');
+            let activeContent = 'Friends';
+            if (e) {
+                activeContent = e.currentTarget.id;
+                console.log(activeContent);
+            }
+            switch (activeContent) {
+                case 'Friends':
+                    $('.friends').show();
+                    $('.tasks, .events, .articles').hide();
+                    break;
+                case 'Tasks':
+                    $('.tasks').remove();
+                    taskManager.taskBlock();
+                    $('.friends, .events, .articles').hide();
+                    break;
+                case 'Events':
+                    $('.events').remove();
+                    eventManager.eventBlock();
+                    $('.friends, .tasks, .articles').hide();
+                    break;
+                case 'Articles':
+                    $('.articles').remove();
+                    articleManager.articleBlock();
+                    $('.friends, .events, .tasks').hide();
+                    break;
+            }
         }
     },
     countTabs: {
@@ -95,7 +132,7 @@ const headerManager = Object.create(null, {
             const options = ['Friend', 'Event', 'Article', 'Task']
             const optionEvent = 'modal';
             const button = $('.header__button');
-            const event = (function() {
+            const event = (function () {
                 headerManager.closeDropdown();
             })
 

@@ -2,8 +2,8 @@ const $ = require('jquery');
 const modalFactory = require('../factories/modalFactory');
 const headerManager = require('../interface/headerManager');
 const buttonFactory = require('../factories/buttonFactory');
-const friendManager = require('../database/friendManager');
-const taskManager = require('../database/taskManager');
+const friendDatabase = require('../database/friendDatabase');
+const taskDatabase = require('../database/taskDatabase');
 
 // Manages all modals used throughout the app
 const modalManager = Object.create(null, {
@@ -15,7 +15,7 @@ const modalManager = Object.create(null, {
             const details = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.';
             const inputs = ['Friend name']
             const button = buttonFactory('modal__content--button', 'Add friend', (function () {
-                friendManager.createFriend()
+                friendDatabase.createFriend()
             }))
             const modal = modalFactory(title, details, inputs, button);
 
@@ -30,7 +30,7 @@ const modalManager = Object.create(null, {
             const details = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.';
             const inputs = ['Task name', 'Task description', 'Due date']
             const button = buttonFactory('modal__content--button', 'Add task', (function () {
-                taskManager.createTask()
+                taskDatabase.createTask()
             }))
             const modal = modalFactory(title, details, inputs, button);
 
@@ -45,7 +45,7 @@ const modalManager = Object.create(null, {
             const details = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.';
             const inputs = ['Event name', 'Event date', 'Location']
             const button = buttonFactory('modal__content--button', 'Add event', (function () {
-                eventManager.createEvent()
+                eventDatabase.createEvent()
             }))
             const modal = modalFactory(title, details, inputs, button);
 
@@ -60,7 +60,7 @@ const modalManager = Object.create(null, {
             const details = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.';
             const inputs = ['Article name', 'Summary', 'URL']
             const button = buttonFactory('modal__content--button', 'Add task', (function () {
-                articleManager.createArticle()
+                articleDatabase.createArticle()
             }))
             const modal = modalFactory(title, details, inputs, button);
 
