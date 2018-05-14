@@ -87,12 +87,28 @@ nav > .logo {
 .content__data {
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 360px);
+    width: calc(100vw);
 }
 
-.content__tasks {
+/* .content__tasks {
     flex-basis: 360px;
     border-left: 1px solid var(--borderColor);
     background-color: var(--fillColor);
+} */
+
+
+/* Tasks view */
+
+.tasks {
+    display: flex;
+    margin: 30px 90px 30px 90px;
+    display: flex;
+    justify-content: space-between;
 }
 
+.tasks__lane {
+    border: 1px solid var(--borderColor);
+    border-radius: 3px;
+    width: 33%;
+    
+}

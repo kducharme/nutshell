@@ -6,24 +6,23 @@ const headerManager = Object.create(null, {
     createStructure: {
         value: function () {
             // Creates the header structure
-            const fragment = document.createDocumentFragment();
-            const structure = document.createElement('span');
-            structure.classList = 'header';
+            $structure = $('<span>')
+            $structure.addClass('header');
+
+            // Gets data 
             const button = headerManager.addButton();
             const tabs = headerManager.addTabs();
 
             // Appends components to the header
-            structure.appendChild(tabs)
-            structure.appendChild(button)
-            fragment.appendChild(structure)
-            $printArea.append(fragment);
+            $structure.append(tabs, button)
+            $printArea.append($structure);
         }
     },
     addTabs: {
         value: function () {
             // Creates the container for the tabs
             const structure = document.createElement('span');
-            const tabs = ['Friends', 'Events', 'Articles']
+            const tabs = ['Friends', 'Tasks', 'Events', 'Articles']
             structure.classList = 'header__tabList';
 
             // Adds the tab content to the container
