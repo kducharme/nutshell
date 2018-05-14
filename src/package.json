@@ -12,9 +12,6 @@
   },
   "author": "Steve Brownlee <steve@stevebrownlee.com>",
   "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "",
   "devDependencies": {
     "grunt": "^1.0.2",
@@ -25,5 +22,8 @@
     "grunt-eslint": "^20.1.0",
     "jquery": "^3.3.1",
     "uglify-es": "^3.3.9"
+  },
+  "dependencies": {
+    "firebase": "^5.0.2"
   }
 }

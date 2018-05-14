@@ -3,7 +3,7 @@ const friendManager = require('./interface/friendManager');
 const loginManager = require('./interface/loginManager');
 
 // Loads login gate
-// loginManager.loginScreen();
+loginManager.loginScreen();
 
 // Loads page sub-nav
 headerManager.createStructure();
