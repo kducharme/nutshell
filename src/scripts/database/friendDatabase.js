@@ -1,18 +1,23 @@
 const $ = require('jquery');
 
 const friendDatabase = Object.create(null, {
-    getFriend: {
+    getAllFriends: {
         value: function () {
             return $.ajax('https://nutshell-kd.firebaseio.com/friends.json?print=pretty')
+        }
+    },
+    getSingleFriend: {
+        value: function () {
+            return $.ajax(`https://nutshell-kd.firebaseio.com/friends/${key}.json?print=pretty`)
         }
     },
     createFriend: {
         value: function () {
             console.log('woo woo - friend added')
-            // $.ajax({
-            //     url: 'https://nutshell-kd.firebaseio.com/friends/',
-            //     method: 'POST'
-            // })
+            $.ajax({
+                url: 'https://nutshell-kd.firebaseio.com/friends/',
+                method: 'POST'
+            })
         }
     },
     updateFriend: {

@@ -93,13 +93,15 @@
 /* Full height/width modal */
 
 .modal__full {
-    margin: 0;
+    margin-top: 200px;
+    box-shadow: none;
+    padding: 50px 50px 50px 50px;
 }
 
 .modal__full--bg {
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: var(--fillColor);
     opacity: 1;
 }
