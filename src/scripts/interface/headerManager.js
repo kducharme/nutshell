@@ -82,7 +82,6 @@ const headerManager = Object.create(null, {
             let activeContent = 'Friends';
             if (e) {
                 activeContent = e.currentTarget.id;
-                console.log(activeContent);
             }
             switch (activeContent) {
                 case 'Friends':

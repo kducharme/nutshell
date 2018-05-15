@@ -2,7 +2,9 @@ const $ = require('jquery');
 const $body = $('body');
 const modalFactory = require('../factories/modalFactory');
 const buttonFactory = require('../factories/buttonFactory');
+const userDatabase = require('../database/userDatabase');
 const clearInputs = require('./clearInputs');
+const setCurrentUser = require('../users/getCurrentUser').setCurrentUser;
 // const firebase = require('firebase');
 
 const loginManager = Object.create(null, {
@@ -10,15 +12,26 @@ const loginManager = Object.create(null, {
         value: function () {
             // TODO - get user email and password
             const $email = $('#id__Email').val();
+            const $name = $('#id__Full').val();
             const $password = $('#id__Password').val();
-
+            
             const auth = firebase.auth();
-            const promise = auth.createUserWithEmailAndPassword($email, $password).then((user) => {
-                setCurrentUser(user)
-            })
-            .then(clearInputs('id__Email'))
-            .then(clearInputs('id__Password'))
-            .catch(e => console.log(e.message));
+            
+            const promise = auth.createUserWithEmailAndPassword($email, $password)
+            .then((user) => {
+                console.log($name);
+                    let userData = {
+                        name: $name,
+                        email: user.user.email,
+                        id: user.user.uid
+                    }
+                    setCurrentUser(user);
+                    userDatabase.createUser(userData);
+                })
+                .then(clearInputs('id__Email'))
+                .then(clearInputs('id__Password'))
+                .then(clearInputs('id__Full'))
+                .catch(e => console.log(e.message));
         }
 
     },
@@ -27,7 +40,7 @@ const loginManager = Object.create(null, {
             // Arguments for modal factory
             const title = 'Welcome to nutshell'
             const details = 'nutshell is a one-stop-shop for managing all of your friends, tasks, events, and  articles. ';
-            const inputs = ['Email address', 'Password']
+            const inputs = ['Full name', 'Email address', 'Password']
             const button = buttonFactory('modal__content--button', 'Create account', (function () {
                 loginManager.createUser()
             }));

@@ -12,11 +12,11 @@ const friendDatabase = Object.create(null, {
         }
     },
     createFriend: {
-        value: function () {
-            console.log('woo woo - friend added')
+        value: function (friend) {
             $.ajax({
-                url: 'https://nutshell-kd.firebaseio.com/friends/',
-                method: 'POST'
+                url: 'https://nutshell-kd.firebaseio.com/friends.json',
+                method: 'POST',
+                data: JSON.stringify(friend)
             })
         }
     },
