@@ -1,9 +1,17 @@
 const $ = require('jquery');
 
 const friendDatabase = Object.create(null, {
-    getAllFriends: {
+    loadAllFriends: {
         value: function () {
-            return $.ajax('https://nutshell-kd.firebaseio.com/friends.json?print=pretty')
+            const friendManager = require('../interface/friendManager')
+            $.ajax({
+                url: 'https://nutshell-kd.firebaseio.com/friends.json?print=pretty',
+                type: 'GET'
+            })
+            .then(friends => {
+                friendManager.getAllFriends(friends)
+            })
+            .catch(e => console.log(e.message));
         }
     },
     getSingleFriend: {
@@ -12,11 +20,11 @@ const friendDatabase = Object.create(null, {
         }
     },
     createFriend: {
-        value: function (friend) {
+        value: function (friendship) {
             $.ajax({
                 url: 'https://nutshell-kd.firebaseio.com/friends.json',
                 method: 'POST',
-                data: JSON.stringify(friend)
+                data: JSON.stringify(friendship)
             })
         }
     },

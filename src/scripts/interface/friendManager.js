@@ -1,5 +1,6 @@
 const $ = require('jquery');
 const $printArea = $('#data');
+const friendDatabase = require('../database/friendDatabase')
 
 // Manages the friend view
 const friendManager = Object.create(null, {
@@ -17,12 +18,31 @@ const friendManager = Object.create(null, {
             $printArea.append($structure);
         }
     },
+    getAllFriends: {
+        value: function (friends) {
+            const allFriends = []
+            for (let key in friends) {
+                allFriends.push(friends[key])
+            }
+            return allFriends;
+        }
+    },
     friendList: {
         value: function () {
             const $friendList = $('<span>');
             $friendList.addClass('friends__list');
 
             return $friendList;
+        }
+    },
+    displayFriends: {
+        value: function (currentUser) {
+            const $printArea = $('.friends__list')
+            const getCurrentUser = require('../users/getCurrentUser').getCurrentUser;
+            const allFriends = friendManager.getAllFriends();
+            const user = currentUser.uid;
+
+            console.log(user, allFriends)
         }
     },
     friendMessages: {

@@ -5,7 +5,7 @@ const buttonFactory = require('../factories/buttonFactory');
 const userDatabase = require('../database/userDatabase');
 const clearInputs = require('./clearInputs');
 const setCurrentUser = require('../users/getCurrentUser').setCurrentUser;
-// const firebase = require('firebase');
+const auth = firebase.auth();
 
 const loginManager = Object.create(null, {
     createUser: {
@@ -14,8 +14,6 @@ const loginManager = Object.create(null, {
             const $email = $('#id__Email').val();
             const $name = $('#id__Full').val();
             const $password = $('#id__Password').val();
-            
-            const auth = firebase.auth();
             
             const promise = auth.createUserWithEmailAndPassword($email, $password)
             .then((user) => {
@@ -47,6 +45,15 @@ const loginManager = Object.create(null, {
             const modal = modalFactory(title, details, inputs, button);
             $('#id__Password').attr('type', 'password')
 
+            const signIn = $('<button>')
+                .attr('id', 'signIn')
+                .addClass('modal__content--button')
+                .text('Sign in')
+                .on('click', (function () {
+                    loginManager.loginUser()
+                }));
+            $('.modal__content').append(signIn);
+
             // Customizing modal
             $('.modal').addClass('modal__full');
             $('.modal__bg').addClass('modal__full--bg');
@@ -55,7 +62,10 @@ const loginManager = Object.create(null, {
     },
     loginUser: {
         value: function () {
+            const $email = $('#id__Email').val();
+            const $password = $('#id__Password').val();
             const promise = auth.signInWithEmailAndPassword($email, $password);
+            promise.catch(e => console.log(e.message))
         }
     }
 })
