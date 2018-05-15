@@ -7,15 +7,21 @@ const friendDatabase = require('./database/friendDatabase');
 // Loads login gate
 loginManager.loginScreen();
 
-// Loads all users
-userDatabase.loadAllUsers();
+// Gets current user then loads UI
+const auth = firebase.auth();
+auth.onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+        // Loads all users
+        userDatabase.loadAllUsers();
 
-// Loads all users
-friendDatabase.loadAllFriends();
+        // Loads all users
+        friendDatabase.loadAllFriends();
 
-// Loads page sub-nav
-headerManager.createStructure();
-headerManager.navigateTabs();
+        // Loads page sub-nav
+        headerManager.createStructure();
+        headerManager.navigateTabs();
 
-// Loads default page block
-friendManager.friendBlock();
+        // Loads default page block
+        friendManager.friendBlock();
+    }
+})

@@ -18,15 +18,6 @@ const friendManager = Object.create(null, {
             $printArea.append($structure);
         }
     },
-    getAllFriends: {
-        value: function (friends) {
-            const allFriends = []
-            for (let key in friends) {
-                allFriends.push(friends[key])
-            }
-            return allFriends;
-        }
-    },
     friendList: {
         value: function () {
             const $friendList = $('<span>');
@@ -36,13 +27,31 @@ const friendManager = Object.create(null, {
         }
     },
     displayFriends: {
-        value: function (currentUser) {
-            const $printArea = $('.friends__list')
+        value: function (friends) {
+            const allGlobalFriends = []
+            for (let key in friends) {
+                allGlobalFriends.push(friends[key])
+            }
+            
+            const $printArea = $('.friends__list');
             const getCurrentUser = require('../users/getCurrentUser').getCurrentUser;
-            const allFriends = friendManager.getAllFriends();
-            const user = currentUser.uid;
+            const user = getCurrentUser();
 
-            console.log(user, allFriends)
+            console.log(allGlobalFriends.length)
+            console.log(user);
+
+            allGlobalFriends.forEach(friend => {
+               console.log(friend.user1)
+               console.log(friend.user2)
+            })
+
+            // const friendList = allGlobalFriends.filter(friend => {
+            //     if (user1 === user || user2 === user)
+            //         return true
+            // })
+
+            // console.log(allFriends)
+            // console.log(friendList)
         }
     },
     friendMessages: {
