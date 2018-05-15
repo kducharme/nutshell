@@ -15,8 +15,8 @@ const userDatabase = Object.create(null, {
         }
     },
     getSingleUser: {
-        value: function () {
-            return $.ajax(`https://nutshell-kd.firebaseio.com/Users/${key}.json?print=pretty`)
+        value: function (id) {
+            return $.ajax(`https://nutshell-kd.firebaseio.com/Users/${id}.json?print=pretty`)
         }
     },
     createUser: {

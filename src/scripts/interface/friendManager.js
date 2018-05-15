@@ -10,7 +10,7 @@ const friendManager = Object.create(null, {
             $structure.addClass('friends');
 
             // Gets list of friends & messages
-            const $friendList = friendManager.friendList();
+            const $friendList = friendManager.friendListStructure();
             const $friendMessages = friendManager.friendMessages();
 
             // Appends everything to section
@@ -18,7 +18,7 @@ const friendManager = Object.create(null, {
             $printArea.append($structure);
         }
     },
-    friendList: {
+    friendListStructure: {
         value: function () {
             const $friendList = $('<span>');
             $friendList.addClass('friends__list');
@@ -26,32 +26,83 @@ const friendManager = Object.create(null, {
             return $friendList;
         }
     },
-    displayFriends: {
+    getListOfFriends: {
         value: function (friends) {
-            const allGlobalFriends = []
-            for (let key in friends) {
-                allGlobalFriends.push(friends[key])
-            }
-            
-            const $printArea = $('.friends__list');
+            // Function requirements
             const getCurrentUser = require('../users/getCurrentUser').getCurrentUser;
+            const userDatabase = require('../database/userDatabase');
             const user = getCurrentUser();
 
-            console.log(allGlobalFriends.length)
-            console.log(user);
+            // Filters friendships based on active user
+            const friendShips = [];
+            for (let key in friends) {
+                if (friends[key].user1 === user.uid || friends[key].user2 === user.uid) {
+                    friendShips.push(friends[key])
+                }
+            }
 
-            allGlobalFriends.forEach(friend => {
-               console.log(friend.user1)
-               console.log(friend.user2)
+            const friendIds = [];
+            friendShips.forEach(friend => {
+                if (friend.user1 === user.uid) {
+                    delete friend.user1;
+                    friendIds.push(friend.user2);
+                }
+                if (friend.user2 === user.uid) {
+                    delete friend.user2;
+                    friendIds.push(friend.user1);
+                }
             })
 
-            // const friendList = allGlobalFriends.filter(friend => {
-            //     if (user1 === user || user2 === user)
-            //         return true
-            // })
+            const friendList = []
+            const allUsers = [];
+            $.ajax({
+                url: 'https://nutshell-kd.firebaseio.com/users.json?print=pretty',
+                type: 'GET'
+            }).then(users => {
+                const userList = Object.keys(users)
+                userList.forEach(key => {
+                    let indivChannel = {
+                        id: users[key].id,
+                        name: users[key].name,
+                        email: users[key].email
+                    }
+                    allUsers.push(indivChannel)
+                })
+                allUsers.forEach(friend => {
+                    friendIds.forEach(id => {
+                        if (id === friend.id) {
+                            friendList.push(friend)
+                        }
+                    })
+                })
+            })
 
-            // console.log(allFriends)
-            // console.log(friendList)
+
+            console.log(friendList)
+            friendManager.displayFriends(friendList)
+        }
+    },
+    displayFriends: {
+        value: function (friendList) {
+            const $printArea = $('.friends__list');
+
+            // Creates and prints friends to the friends list
+            friendList.forEach(friend => {
+                const $structure = $('<span>')
+                    .addClass('friends__list--friendRow');
+
+                const $name = $('<p>')
+                    .addClass('friends__list--friendName')
+                    .text(friend);
+
+                const $count = $('<p>')
+                    .addClass('friends__list--friendMessages')
+                    .text(Math.floor(Math.random() * 10))
+                // TODO - Hook up counter of all messages
+
+                $structure.append($name, $count);
+                $printArea.append($structure);
+            })
         }
     },
     friendMessages: {

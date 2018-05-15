@@ -7,6 +7,7 @@ const userManager = Object.create(null, {
             for (let key in users) {
                 allUsers.push(users[key])
             }
+            return allUsers;
         }
     },
 

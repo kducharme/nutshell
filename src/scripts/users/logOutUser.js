@@ -10,8 +10,8 @@ const logOutUser = () => {
         .attr('id', 'logout')
         .text('Log out')
         .on('click', function () {
-            firebase.auth().signOut();
-            // loginManager.loginScreen();
+            firebase.auth().signOut()
+                .then($('#data').empty());
         });
     $printArea.append($button)
 }

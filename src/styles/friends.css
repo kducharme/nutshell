@@ -14,6 +14,10 @@
     margin-right: 30px;
 }
 
+.friends__list--friendRow {
+    display: flex;
+}
+
 .friends__messages {
     display: flex;
     flex-direction: column;

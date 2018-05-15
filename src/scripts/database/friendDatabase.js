@@ -9,7 +9,7 @@ const friendDatabase = Object.create(null, {
                 type: 'GET'
             })
             .then(friends => {
-                friendManager.displayFriends(friends)
+                friendManager.getListOfFriends(friends)
             })
             .catch(e => console.log(e.message));
         }

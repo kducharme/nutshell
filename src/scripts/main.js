@@ -1,3 +1,5 @@
+const $ = require('jquery');
+
 const headerManager = require('./interface/headerManager');
 const friendManager = require('./interface/friendManager');
 const loginManager = require('./interface/loginManager');
@@ -11,17 +13,17 @@ loginManager.loginScreen();
 const auth = firebase.auth();
 auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-        // Loads all users
+        // Load all users
         userDatabase.loadAllUsers();
-
-        // Loads all users
-        friendDatabase.loadAllFriends();
-
+        
         // Loads page sub-nav
         headerManager.createStructure();
         headerManager.navigateTabs();
-
+        
         // Loads default page block
         friendManager.friendBlock();
+
+        // Load the user's friends
+        friendDatabase.loadAllFriends();
     }
 })
