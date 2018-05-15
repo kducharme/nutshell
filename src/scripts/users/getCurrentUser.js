@@ -10,19 +10,16 @@ auth.onAuthStateChanged(firebaseUser => {
         $('.modal__bg').hide()
     }
     else {
-        loginModal.classList.remove('hide');
-        console.log('User does not exist');
+        $('.modal__bg').show()
     }
 })
 
 const getCurrentUser = () => {
     return currentUser;
-    console.log(currentUser)
 }
 
 const setCurrentUser = (user) => {
     currentUser = user;
-    console.log(currentUser)
 }
 
 module.exports = {

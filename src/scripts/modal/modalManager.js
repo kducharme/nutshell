@@ -4,6 +4,7 @@ const headerManager = require('../interface/headerManager');
 const buttonFactory = require('../factories/buttonFactory');
 const friendDatabase = require('../database/friendDatabase');
 const taskDatabase = require('../database/taskDatabase');
+const getCurrentUser = require('../users/getCurrentUser').getCurrentUser;
 
 // Manages all modals used throughout the app
 const modalManager = Object.create(null, {
@@ -12,10 +13,13 @@ const modalManager = Object.create(null, {
         value: function () {
             // Creating arguments for modalFactory;
             const title = 'Add new friend'
-            const details = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.';
-            const inputs = ['Friend name']
+            const details = `Enter your friend's email to get connected, start chatting, and gain access to their articles and events.`;
+            const inputs = ['Friend email']
             const button = buttonFactory('modal__content--button', 'Add friend', (function () {
+                const friend = $('id__Friend').val()
+                const currentUser = 
                 friendDatabase.createFriend()
+
             }))
             const modal = modalFactory(title, details, inputs, button);
 
