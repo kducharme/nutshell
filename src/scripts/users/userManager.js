@@ -1,5 +1,6 @@
 const $ = require('jquery');
 
+// Gets all users from firebase and converts to array
 const userManager = Object.create(null, {
     getAllUsers: {
         value: function (users) {

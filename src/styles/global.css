@@ -128,13 +128,6 @@ nav > .logo {
     margin-right: 30px;
 }
 
-.friends__list--friendMessages {
-    font-size: 13px;
-    font-weight: 400;
-    opacity: .7;
-    padding-right: 10px;
-}
-
 .friends__list--friendRow {
     display: flex;
     align-content: center;
@@ -142,12 +135,50 @@ nav > .logo {
     border-bottom: 1px solid var(--borderColor);
 }
 
+.friends__list--friendRow:hover {
+    cursor: pointer;
+}
+
 .friends__list--friendName {
     font-size: 14px;
-    font-weight: 600;
-    width: 95%;
+    font-weight: 400;
+    width: 85%;
     padding-left: 10px;
+    opacity: .7
 }
+
+.friends__list--friendMessages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    background-color: #E5E8EC;;
+    color: #888EA1;
+    padding: 2px 2px 2px 8px;
+    width: 39px;
+    border-radius: 4px;
+    padding-right: 10px;
+    margin-left: 3px;
+}
+
+.activeChat {
+    color: var(--primaryColor)!important;
+    font-weight: 800;
+}
+
+.activeChat__name {
+    color: var(--secondaryColor)!important;
+    font-weight: 900;
+    opacity: 1!important;
+}
+
+.activeChat__count {
+    background-color: var(--primaryColor);
+    color: white;
+}
+
 
 .friends__messages {
     display: flex;
@@ -181,14 +212,26 @@ nav > .logo {
 /* Individual message */
 
 .message {
-    line-height: 1.6;
-    font-size: 14px;
     padding: 10px 24px 10px 20px;
     background-color: var(--messageFill);
     border-radius: 10px;
     margin-bottom: 8px;
-    width: 70%;
 }
+
+.message__author {
+    line-height: 1.6;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.message__text {
+    font-weight: 400;
+    opacity: .7;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
 
 /* Tasks view */
 
