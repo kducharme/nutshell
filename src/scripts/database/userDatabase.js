@@ -1,14 +1,22 @@
 const $ = require('jquery');
 
 const userDatabase = Object.create(null, {
-    getAllUsers: {
+    loadAllUsers: {
         value: function () {
-            return $.ajax('https://nutshell-kd.firebaseio.com/users.json?print=pretty')
+            const userManager = require('../users/userManager')
+            $.ajax({
+                url: 'https://nutshell-kd.firebaseio.com/users.json?print=pretty',
+                type: 'GET'
+            })
+            .then(users => {
+                userManager.getAllUsers(users)
+            })
+            .catch(e => console.log(e.message));
         }
     },
     getSingleUser: {
-        value: function () {
-            return $.ajax(`https://nutshell-kd.firebaseio.com/Users/${key}.json?print=pretty`)
+        value: function (id) {
+            return $.ajax(`https://nutshell-kd.firebaseio.com/Users/${id}.json?print=pretty`)
         }
     },
     createUser: {

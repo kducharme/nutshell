@@ -1,6 +1,6 @@
 const $ = require('jquery');
 
-const friendDatabase = Object.create(null, {
+const chatDatabase = Object.create(null, {
     loadAllFriends: {
         value: function () {
             const friendManager = require('../interface/friendManager')
@@ -9,18 +9,10 @@ const friendDatabase = Object.create(null, {
                 type: 'GET'
             })
             .then($('.friends__list').empty())
-            .then(friends => {
-                friendManager.getListOfFriends(friends)
-            })
             .catch(e => console.log(e.message));
         }
     },
-    getSingleFriend: {
-        value: function () {
-            return $.ajax(`https://nutshell-kd.firebaseio.com/friends/${key}.json?print=pretty`);
-        }
-    },
-    createFriend: {
+    createChat: {
         value: function (friendship) {
             $.ajax({
                 url: 'https://nutshell-kd.firebaseio.com/friends.json',
@@ -29,7 +21,7 @@ const friendDatabase = Object.create(null, {
             })
         }
     },
-    updateFriend: {
+    updateChat: {
         value: function (friend) {
             $.ajax({
                 url: `https://nutshell-kd.firebaseio.com/friends/${friend.key}`,
@@ -37,7 +29,7 @@ const friendDatabase = Object.create(null, {
             })
         }
     },
-    deleteFriend: {
+    deleteChat: {
         value: function (friend) {
             $.ajax({
                 url: `https://nutshell-kd.firebaseio.com/friends/${friend.key}`,
@@ -47,14 +39,4 @@ const friendDatabase = Object.create(null, {
     }
 })
 
-module.exports = friendDatabase;
-
-/*
-
-Chat
-- Add task
-- Load task
-- Delete task
-- Update task
-
-*/
+module.exports = chatDatabase;

@@ -24,7 +24,7 @@ const headerManager = Object.create(null, {
             $structure = $('<span>')
                 .addClass('header__tabList');
 
-            const tabs = ['Friends', 'Tasks', 'Events', 'Articles']
+            const tabs = ['Friends', 'Events']
 
             // Adds the tab content to the container
             tabs.forEach(tab => {
@@ -35,7 +35,6 @@ const headerManager = Object.create(null, {
                         headerManager.navigateTabs(e)
                         headerManager.showContent(e);
                     })
-
                 // Creates name of tab
                 const $tabName = $('<p>')
                     .addClass('header__tabList--label')
@@ -43,8 +42,8 @@ const headerManager = Object.create(null, {
 
                 // Counts total activity within tab
                 const $counter = $('<p>')
-                    .addClass('header__tabList--counter')
-                    .text(headerManager.countTabs())
+                    .addClass(`header__tabList--counter`)
+                    .attr('id', `id__${tab}`);
 
                 // Appends everything to the block
                 $block.append($tabName, $counter)

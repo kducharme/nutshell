@@ -6,6 +6,7 @@ let currentUser = null;
 const auth = firebase.auth();
 auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
+        const friendManager = require('../interface/friendManager');
         currentUser = firebaseUser;
         $('.modal__bg').hide()
     }
