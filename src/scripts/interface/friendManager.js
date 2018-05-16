@@ -54,55 +54,51 @@ const friendManager = Object.create(null, {
             })
 
             const friendList = []
-            const allUsers = [];
             $.ajax({
                 url: 'https://nutshell-kd.firebaseio.com/users.json?print=pretty',
                 type: 'GET'
             }).then(users => {
-                const userList = Object.keys(users)
-                userList.forEach(key => {
-                    let indivChannel = {
-                        id: users[key].id,
-                        name: users[key].name,
-                        email: users[key].email
-                    }
-                    allUsers.push(indivChannel)
-                })
-                allUsers.forEach(friend => {
-                    friendIds.forEach(id => {
-                        if (id === friend.id) {
-                            friendList.push(friend)
-                        }
+                const allFriends = Object.keys(users)
+                    .map(i => users[i])
+                    .forEach(friend => {
+                        friendIds.forEach(id => {
+                            if (friend.id === id) {
+                                friendList.push(friend)
+                            }
+                        })
                     })
+                    friendManager.displayFriends(friendList)
                 })
-            })
-
-
-            console.log(friendList)
-            friendManager.displayFriends(friendList)
         }
     },
     displayFriends: {
         value: function (friendList) {
             const $printArea = $('.friends__list');
-
             // Creates and prints friends to the friends list
             friendList.forEach(friend => {
                 const $structure = $('<span>')
-                    .addClass('friends__list--friendRow');
-
+                .addClass('friends__list--friendRow')
+                .attr('id', friend.id)
+                
                 const $name = $('<p>')
-                    .addClass('friends__list--friendName')
-                    .text(friend);
-
+                .addClass('friends__list--friendName')
+                .text(friend.name);
+                
                 const $count = $('<p>')
-                    .addClass('friends__list--friendMessages')
-                    .text(Math.floor(Math.random() * 10))
+                .addClass('friends__list--friendMessages')
+                .text(Math.floor(Math.random() * 10))
                 // TODO - Hook up counter of all messages
-
+                
                 $structure.append($name, $count);
                 $printArea.append($structure);
+                friendManager.countFriends(friendList.length)
             })
+        }
+    },
+    countFriends: {
+        value: function (count) {
+            const $print = $('#id__Friends')
+                .html(count);
         }
     },
     friendMessages: {

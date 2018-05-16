@@ -8,6 +8,7 @@ const friendDatabase = Object.create(null, {
                 url: 'https://nutshell-kd.firebaseio.com/friends.json?print=pretty',
                 type: 'GET'
             })
+            .then($('.friends__list').empty())
             .then(friends => {
                 friendManager.getListOfFriends(friends)
             })
@@ -16,7 +17,7 @@ const friendDatabase = Object.create(null, {
     },
     getSingleFriend: {
         value: function () {
-            return $.ajax(`https://nutshell-kd.firebaseio.com/friends/${key}.json?print=pretty`)
+            return $.ajax(`https://nutshell-kd.firebaseio.com/friends/${key}.json?print=pretty`);
         }
     },
     createFriend: {
