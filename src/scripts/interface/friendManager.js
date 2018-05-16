@@ -44,11 +44,9 @@ const friendManager = Object.create(null, {
             const friendIds = [];
             friendShips.forEach(friend => {
                 if (friend.user1 === user.uid) {
-                    delete friend.user1;
                     friendIds.push(friend.user2);
                 }
                 if (friend.user2 === user.uid) {
-                    delete friend.user2;
                     friendIds.push(friend.user1);
                 }
             })

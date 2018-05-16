@@ -5,6 +5,7 @@ const friendManager = require('./interface/friendManager');
 const loginManager = require('./interface/loginManager');
 const userDatabase = require('./database/userDatabase');
 const friendDatabase = require('./database/friendDatabase');
+const logOutUser = require('./users/logOutUser');
 
 // Loads login gate
 loginManager.loginScreen();
@@ -15,6 +16,11 @@ auth.onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         // Load all users
         userDatabase.loadAllUsers();
+
+        // Loads logout dropdown
+        logOutUser(firebaseUser);
+
+        console.log(firebaseUser)
         
         // Loads page sub-nav
         headerManager.createStructure();

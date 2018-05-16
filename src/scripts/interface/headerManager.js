@@ -24,7 +24,7 @@ const headerManager = Object.create(null, {
             $structure = $('<span>')
                 .addClass('header__tabList');
 
-            const tabs = ['Friends', 'Tasks', 'Events', 'Articles']
+            const tabs = ['Friends', 'Events']
 
             // Adds the tab content to the container
             tabs.forEach(tab => {
