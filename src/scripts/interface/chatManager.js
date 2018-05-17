@@ -10,23 +10,23 @@ const chatManager = Object.create(null, {
     activeChat: {
         value: function (e) {
             let $activeChat = $('#friendList')[0].childNodes[0];
-            let $activeChatName = $('#friendList')[0].childNodes[0].childNodes[0];
-            let $activeChatCount = $('#friendList')[0].childNodes[0].childNodes[1];
+            let $activeChatName = $('#friendList')[0].childNodes[0].childNodes[1];
+            let $activeChatProfile = $('#friendList')[0].childNodes[0].childNodes[0];
 
             if (e) {
                 $activeChat = e.currentTarget;
-                $activeChatName = $activeChat.childNodes[0];
-                $activeChatCount = $activeChat.childNodes[1];
+                $activeChatName = $activeChat.childNodes[1];
+                $activeChatProfile = $activeChat.childNodes[0];
             }
 
             chatManager.setCurrentChat($activeChat.id)
 
             $('.friends__list--friendRow').removeClass('activeChat');
             $('.friends__list--friendName').removeClass('activeChat__name');
-            $('.friends__list--friendMessages').removeClass('activeChat__count');
+            $('.friends__list--profile').removeClass('activeChat__profile');
             $activeChat.classList.add('activeChat');
             $activeChatName.classList.add('activeChat__name');
-            $activeChatCount.classList.add('activeChat__count');
+            $activeChatProfile.classList.add('activeChat__profile');
         }
     },
     getCurrentChat: {
@@ -45,39 +45,51 @@ const chatManager = Object.create(null, {
             $('.friends__messages--post').empty()
         }
     },
-    postMessage: {
+    createMessage: {
         value: function ($text) {
             const sender = getCurrentUser();
             const receiver = chatManager.getCurrentChat();
 
-            const chat = {
+            const message = {
                 sender: sender.uid,
                 receiver,
                 $text
             }
-
-            console.log($text.length)
-
+        chatManager.postNewMessage(message)
+        }
+    },
+    postNewMessage: {
+        value: function (message) {
+            const currentUser = getCurrentUser().uid;
             const $structure = $('<span>')
                 .addClass('message');
-
             const $message = $('<p>')
-                .addClass('message__text')
-                .text($text);
+                .text(message.$text)
+                .addClass('message__text');
 
-            const $author = $('<p>')
-                .addClass('message__author')
-                .text(sender.email);
+            if (currentUser === message.sender) {
+                $structure.addClass('message__text--sender');
+                $message.addClass('message__textSender');
+            }
+            if (currentUser !== message.sender) {
+                $structure.addClass('message__text--receiver');
+            }
 
-            $structure.append($author, $message)
-
+            $structure.append($message)
             $('.friends__messages--post').append($structure);
+        }
+    },
+    saveMessage: {
+        value: function ($text) {
+            const sender = getCurrentUser();
+            const receiver = chatManager.getCurrentChat();
 
-            // TODO - SEND NEW MESSAGE TO DB
-            // TODO - GET USER NAME
-            // TODO - GET DATE
-            // TODO - ADD DELETE
-            // TODO - ADD EDIT
+            const message = {
+                sender: sender.uid,
+                receiver,
+                $text
+            }
+        chatManager.postNewMessage(message)
         }
     }
 })

@@ -84,16 +84,23 @@ const friendManager = Object.create(null, {
                     chatManager.changeChat(e)
                 });
                 
+                const nameArray = friend.name.split(' ');
+                const initials = `${nameArray[0].charAt(0)}${nameArray[1].charAt(0)}`
+
+                const $profile = $('<span>')
+                    .addClass('friends__list--profile')
+                    .text(initials);
+
                 const $name = $('<p>')
                 .addClass('friends__list--friendName')
                 .text(friend.name);
                 
-                const $count = $('<p>')
-                .addClass('friends__list--friendMessages')
-                .text(`${Math.floor(Math.random() * 10)} new`);
-                // TODO - Hook up counter of all messages
+                // const $count = $('<p>')
+                // .addClass('friends__list--friendMessages')
+                // .text(`${Math.floor(Math.random() * 10)}`);
+                // // TODO - Hook up counter of all messages
                 
-                $structure.append($name, $count);
+                $structure.append($profile, $name);
                 $printArea.append($structure);
                 friendManager.countFriends(friendList.length)
 
@@ -139,7 +146,7 @@ const friendManager = Object.create(null, {
             $writeArea.keypress(function (e) {
                 if ($writeArea.val()) {
                     if (e.which === 13) {
-                        chatManager.postMessage($writeArea.val());
+                        chatManager.createMessage($writeArea.val());
                         friendManager.clearWriteArea();
                         friendManager.scrollToBottom();
                     }
