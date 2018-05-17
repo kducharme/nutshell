@@ -80,8 +80,7 @@ const friendManager = Object.create(null, {
                 .addClass('friends__list--friendRow')
                 .attr('id', friend.id)
                 .on('click', function(e) {
-                    chatManager.activeChat(e)
-                    chatManager.changeChat(e)
+                    chatManager.activeChat(e)  
                 });
                 
                 const nameArray = friend.name.split(' ');

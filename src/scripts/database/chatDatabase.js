@@ -1,15 +1,14 @@
 const $ = require('jquery');
 
 const chatDatabase = Object.create(null, {
-    loadAllFriends: {
+    loadAll: {
         value: function () {
-            const friendManager = require('../interface/friendManager')
-            $.ajax({
-                url: 'https://nutshell-kd.firebaseio.com/friends.json?print=pretty',
-                type: 'GET'
+            const chatManager = require('../interface/chatManager')
+            return $.ajax({
+                url: 'https://nutshell-kd.firebaseio.com/chat.json?print=pretty',
+                type: 'GET',
             })
-            .then($('.friends__list').empty())
-            .catch(e => console.log(e.message));
+            .catch(e => console.log(e.message))
         }
     },
     createChat: {
