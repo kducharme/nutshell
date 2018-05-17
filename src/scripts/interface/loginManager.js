@@ -47,7 +47,7 @@ const loginManager = Object.create(null, {
 
             const signIn = $('<button>')
                 .attr('id', 'signIn')
-                .addClass('modal__content--button')
+                .addClass('modal__content--buttonExisting')
                 .text('Sign in')
                 .on('click', (function () {
                     loginManager.loginUser()

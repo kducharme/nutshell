@@ -226,8 +226,10 @@ nav > .logo {
 
 .message {
     padding: 5px 15px 5px 15px;
+    margin-top: 5px;
     border-radius: 100px;
     margin-bottom: 8px;
+    max-width: 90%;
 }
 
 .message__text {
@@ -249,7 +251,7 @@ nav > .logo {
 
 .message__text--receiver {
     align-self: flex-start;
-    background-color: var(--fillColor);
+    background-color: rgb(238, 240, 241);
     height: auto;
 }
 
