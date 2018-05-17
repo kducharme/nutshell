@@ -9,24 +9,32 @@ let currentChat = null;
 const chatManager = Object.create(null, {
     activeChat: {
         value: function (e) {
+            // Sets the default chat to the first on the list
             let $activeChat = $('#friendList')[0].childNodes[0];
-            let $activeChatName = $('#friendList')[0].childNodes[0].childNodes[0];
-            let $activeChatCount = $('#friendList')[0].childNodes[0].childNodes[1];
+            let $activeChatName = $('#friendList')[0].childNodes[0].childNodes[1];
+            let $activeChatProfile = $('#friendList')[0].childNodes[0].childNodes[0];
 
+            // Changes active chat based on what user clicks
             if (e) {
                 $activeChat = e.currentTarget;
-                $activeChatName = $activeChat.childNodes[0];
-                $activeChatCount = $activeChat.childNodes[1];
+                $activeChatName = $activeChat.childNodes[1];
+                $activeChatProfile = $activeChat.childNodes[0];
             }
 
+            // Sets the active chat to retrieve later if needed
             chatManager.setCurrentChat($activeChat.id)
 
+            // Adds styling to friend list based on active chat
             $('.friends__list--friendRow').removeClass('activeChat');
             $('.friends__list--friendName').removeClass('activeChat__name');
-            $('.friends__list--friendMessages').removeClass('activeChat__count');
+            $('.friends__list--profile').removeClass('activeChat__profile');
             $activeChat.classList.add('activeChat');
             $activeChatName.classList.add('activeChat__name');
-            $activeChatCount.classList.add('activeChat__count');
+            $activeChatProfile.classList.add('activeChat__profile');
+
+            // Empties the DOM and loads messages
+            $('.friends__messages--post').empty()
+            chatManager.loadMessages($activeChat);
         }
     },
     getCurrentChat: {
@@ -39,47 +47,92 @@ const chatManager = Object.create(null, {
             currentChat = user;
         }
     },
-    changeChat: {
-        value: function (e) {
-            // Clears chat area
-            $('.friends__messages--post').empty()
-        }
-    },
-    postMessage: {
-        value: function ($text) {
+    createMessage: {
+        value: function (text) {
             const sender = getCurrentUser();
             const receiver = chatManager.getCurrentChat();
 
-            const chat = {
+            const message = {
                 sender: sender.uid,
                 receiver,
-                $text
+                text
             }
-
-            console.log($text.length)
-
+            chatManager.postNewMessage(message)
+            chatManager.saveMessage(message)
+        }
+    },
+    postNewMessage: {
+        value: function (message) {
+            const currentUser = getCurrentUser().uid;
             const $structure = $('<span>')
                 .addClass('message');
-
             const $message = $('<p>')
-                .addClass('message__text')
-                .text($text);
+                .text(message.text)
+                .addClass('message__text');
 
-            const $author = $('<p>')
-                .addClass('message__author')
-                .text(sender.email);
+            if (currentUser === message.sender) {
+                $structure.addClass('message__text--sender');
+                $message.addClass('message__textSender');
+            }
+            if (currentUser !== message.sender) {
+                $structure.addClass('message__text--receiver');
+            }
 
-            $structure.append($author, $message)
-
+            $structure.append($message)
             $('.friends__messages--post').append($structure);
-
-            // TODO - SEND NEW MESSAGE TO DB
-            // TODO - GET USER NAME
-            // TODO - GET DATE
-            // TODO - ADD DELETE
-            // TODO - ADD EDIT
         }
-    }
+    },
+    saveMessage: {
+        value: function (message) {
+            chatDatabase.createChat(message)
+        }
+    },
+    loadMessages: {
+        value: function (activeChat) {
+            const currentUser = getCurrentUser().uid;
+            let chatMessages = [];
+            chatDatabase.loadAll().then(chats => {
+                const allChats = Object.keys(chats)
+                    .map(i => chats[i])
+                    .forEach(chat => {
+                        if ((chat.sender === activeChat.id || chat.receiver === activeChat.id) && (currentUser === chat.sender || currentUser === chat.receiver)) {
+                            chatMessages.push(chat);
+                        }
+                    })
+                chatManager.postSavedMessages(chatMessages);
+            });
+        }
+
+    },
+    postSavedMessages: {
+        value: function (chatMessages) {
+            const currentUser = getCurrentUser().uid;
+
+            chatMessages.forEach(message => {
+                // Creates element for message block
+                const $structure = $('<span>')
+                    .addClass('message');
+
+                // Creates element for message text
+                const $message = $('<p>')
+                    .text(message.text)
+                    .addClass('message__text');
+
+                if (currentUser === message.sender) {
+                    $structure.addClass('message__text--sender');
+                    $message.addClass('message__textSender');
+                }
+                if (currentUser !== message.sender) {
+                    $structure.addClass('message__text--receiver');
+                }
+                $structure.append($message)
+                $('.friends__messages--post').append($structure);
+            })
+
+
+
+        }
+    },
 })
 
 module.exports = chatManager;

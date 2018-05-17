@@ -2,6 +2,7 @@
     --primaryColor: #2196F3;
     --secondaryColor: #101D42;
     --accentColor: #E94F37;
+    --activeChat: #2196F3;
     --accentHoverColor: #C6351F;
     --backgroundColor: white;
     --fillColor: #F7F8F9;
@@ -124,7 +125,6 @@ nav > .logo {
     height: calc(100vh - 68px - 50px - 60px);
     width: 30%;
     min-width: 180px;
-    padding: 0 10px 0 10px;
     margin-right: 30px;
 }
 
@@ -140,11 +140,24 @@ nav > .logo {
 }
 
 .friends__list--friendName {
-    font-size: 14px;
-    font-weight: 400;
-    width: 85%;
+    font-size: 13px;
+    font-weight: 600;
+    width: 87%;
     padding-left: 10px;
-    opacity: .7
+    opacity: .7;
+}
+
+.friends__list--profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(207, 210, 219);
+    font-size: 12px!important;
+    font-weight: 600;
+    color: #888EA1;
+    border-radius: 500px;
+    margin: 7px 5px 7px 12px;
+    width: 30px;
 }
 
 .friends__list--friendMessages {
@@ -152,33 +165,33 @@ nav > .logo {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 400;
     background-color: #E5E8EC;;
     color: #888EA1;
-    padding: 2px 2px 2px 8px;
-    width: 39px;
-    border-radius: 4px;
-    padding-right: 10px;
+    width: 20px;
+    height: 20px;
+    padding: 0 84x 0 4px;
+    border-radius: 10px;
     margin-left: 3px;
 }
 
 .activeChat {
+    background-color: var(--activeChat); 
     color: var(--primaryColor)!important;
     font-weight: 800;
 }
 
+.activeChat__profile {
+    background-color: white!important;
+    color: var(--secondaryColor);
+}
+
 .activeChat__name {
-    color: var(--secondaryColor)!important;
-    font-weight: 900;
+    color: white;
+    font-weight: 800;
     opacity: 1!important;
 }
-
-.activeChat__count {
-    background-color: var(--primaryColor);
-    color: white;
-}
-
 
 .friends__messages {
     display: flex;
@@ -192,15 +205,6 @@ nav > .logo {
     width: 70%;
 }
 
-.friends__messages--post {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 10px 10px 10px;
-    overflow: scroll;
-    height: 92%;
-    border-bottom: 3px solid var(--bordercolor);
-}
-
 .friends__messages--write {
     height: 8%;
     padding: 4px 20px 4px 20px;
@@ -211,24 +215,44 @@ nav > .logo {
 
 /* Individual message */
 
-.message {
-    padding: 10px 24px 10px 20px;
-    background-color: var(--messageFill);
-    border-radius: 10px;
-    margin-bottom: 8px;
+.friends__messages--post {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 10px 20px;
+    overflow: scroll;
+    height: 92%;
+    border-bottom: 3px solid var(--bordercolor);
 }
 
-.message__author {
-    line-height: 1.6;
-    font-weight: 600;
-    font-size: 14px;
+.message {
+    padding: 5px 15px 5px 15px;
+    margin-top: 5px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+    max-width: 90%;
 }
 
 .message__text {
     font-weight: 400;
-    opacity: .7;
-    line-height: 1.6;
     font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.message__textSender {
+    color: white!important;
+}
+
+.message__text--sender {
+    align-self: flex-end;
+    background-color: var(--primaryColor)!important;
+    height: auto;
+}
+
+.message__text--receiver {
+    align-self: flex-start;
+    background-color: rgb(238, 240, 241);
+    height: auto;
 }
 
 
