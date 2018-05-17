@@ -46,16 +46,17 @@ const chatManager = Object.create(null, {
         }
     },
     createMessage: {
-        value: function ($text) {
+        value: function (text) {
             const sender = getCurrentUser();
             const receiver = chatManager.getCurrentChat();
 
             const message = {
                 sender: sender.uid,
                 receiver,
-                $text
+                text
             }
         chatManager.postNewMessage(message)
+        chatManager.saveMessage(message)
         }
     },
     postNewMessage: {
@@ -64,7 +65,7 @@ const chatManager = Object.create(null, {
             const $structure = $('<span>')
                 .addClass('message');
             const $message = $('<p>')
-                .text(message.$text)
+                .text(message.text)
                 .addClass('message__text');
 
             if (currentUser === message.sender) {
@@ -80,17 +81,13 @@ const chatManager = Object.create(null, {
         }
     },
     saveMessage: {
-        value: function ($text) {
-            const sender = getCurrentUser();
-            const receiver = chatManager.getCurrentChat();
-
-            const message = {
-                sender: sender.uid,
-                receiver,
-                $text
-            }
-        chatManager.postNewMessage(message)
+        value: function (message) {
+            console.log(message)
+            chatDatabase.createChat(message)
         }
+    },
+    loadMessages: {
+        
     }
 })
 

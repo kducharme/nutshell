@@ -13,11 +13,12 @@ const chatDatabase = Object.create(null, {
         }
     },
     createChat: {
-        value: function (friendship) {
+        value: function (message) {
+            console.log(message)
             $.ajax({
-                url: 'https://nutshell-kd.firebaseio.com/friends.json',
+                url: 'https://nutshell-kd.firebaseio.com/chat.json',
                 method: 'POST',
-                data: JSON.stringify(friendship)
+                data: JSON.stringify(message)
             })
         }
     },

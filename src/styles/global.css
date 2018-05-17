@@ -129,7 +129,6 @@ nav > .logo {
 }
 
 .friends__list--friendRow {
-    height: 46px;
     display: flex;
     align-content: center;
     width: 100%;
@@ -153,12 +152,12 @@ nav > .logo {
     align-items: center;
     justify-content: center;
     background-color: rgb(207, 210, 219);
-    font-size: 14px!important;
+    font-size: 13px!important;
     font-weight: 600;
     color: #888EA1;
     border-radius: 500px;
-    margin: 7px 5px 7px 5px;
-    width: 35px;
+    margin: 7px 5px 7px 12px;
+    width: 32px;
 }
 
 .friends__list--friendMessages {
@@ -190,7 +189,7 @@ nav > .logo {
 
 .activeChat__name {
     color: white;
-    font-weight: 900;
+    font-weight: 800;
     opacity: 1!important;
 }
 
