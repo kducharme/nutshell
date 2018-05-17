@@ -3,6 +3,7 @@ const $printArea = $('#data');
 const getCurrentUser = require('../users/getCurrentUser').getCurrentUser;
 const chatDatabase = require('../database/chatDatabase');
 const friendManager = require('./friendManager');
+const notificationManager = require('./notificationManager');
 
 let currentChat = null;
 
@@ -36,6 +37,7 @@ const chatManager = Object.create(null, {
             // Empties the DOM and loads messages
             $('.friends__messages--post').empty()
             chatManager.loadMessages($activeChat);
+            notificationManager.removeNotification($activeChat);
         }
     },
     getCurrentChat: {

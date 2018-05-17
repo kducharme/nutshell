@@ -15,25 +15,67 @@ const notificationManager = Object.create(null, {
                     .pop();
                 console.log(newMessage)
                 notificationManager.postNewMessage(newMessage)
-                notificationManager.showNotification(newMessage)
+                notificationManager.notificationFilter(newMessage)
             })
         }
     },
-    showNotification: {
+    notificationFilter: {
         value: function (message) {
+            // Filters the new messages by:
+            // 1. Whether or not the two people are friends
+            // 2. Whether or not the recipient is not currently chatting with the sender
+            
             const activeChat = $('.activeChat')[0].id;
             const currentUser = getCurrentUser().uid;
             const activeUserFriendList = Array.from($('.friends__list')[0].childNodes);
 
-            // If the person that received the message is not the active channel, then it was sent to someone else
+            // Checks whether or not new messages are sent in the current chat or another chat
             if ((message.receiver === activeChat && message.sender === currentUser) || (message.receiver === currentUser && message.sender === activeChat)) {
                 console.log('this chat')
             }
             else {
-                const recipient = message.receiver;
-                console.log(activeUserFriendList);
-                console.log('dif chat');
+                // If sent in another chat, it checks whether or not it was sent by a friend
+                let sender;
+                activeUserFriendList.forEach(friend => {
+                    if (message.receiver === currentUser) {
+                        if (message.sender !== activeChat) {
+                            sender = message.sender;
+                        }
+                    }
+                    else{
+                        console.log('not my friend :(');
+                    }
+                })
+                notificationManager.showNotification(sender);
             }
+        }
+    },
+    showNotification: {
+        value: function (sender) {
+            // Posts notification if a new message is sent by a friend that the user is not currently speaking with
+            const $sender = $(`#${sender}`)
+            const $printArea = $sender[0];
+
+            const notify = document.createElement('span')
+            notify.classList.add('notification');
+
+                console.log(notify)
+            
+            $printArea.append(notify);
+        }
+    },
+    removeNotification: {
+        value: function (sender) {
+            // Posts notification if a new message is sent by a friend that the user is not currently speaking with
+            const $sender = $(`#${sender}`)
+            const $printArea = $sender[0];
+
+            const notify = document.createElement('span')
+            notify.classList.add('notification');
+
+                console.log(notify)
+            
+            $printArea.append(notify);
         }
     },
     postNewMessage: {

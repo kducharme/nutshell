@@ -4,6 +4,7 @@
     --accentColor: #E94F37;
     --activeChat: #2196F3;
     --accentHoverColor: #C6351F;
+    --notificationColor: #E84855;
     --backgroundColor: white;
     --fillColor: #F7F8F9;
     --messageFill: rgb(241, 242, 243);
@@ -142,9 +143,17 @@ nav > .logo {
 .friends__list--friendName {
     font-size: 13px;
     font-weight: 600;
-    width: 80%;
+    width: 70%;
     padding-left: 10px;
     opacity: .7;
+}
+
+.friends__list--friendRow > .notification {
+    margin: 15px;
+    height: 10px;
+    width: 10px;
+    background-color: var(--notificationColor);
+    border-radius: 500px;
 }
 
 .friends__list--profile {
