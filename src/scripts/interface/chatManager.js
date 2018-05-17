@@ -2,6 +2,7 @@ const $ = require('jquery');
 const $printArea = $('#data');
 const getCurrentUser = require('../users/getCurrentUser').getCurrentUser;
 const chatDatabase = require('../database/chatDatabase');
+const friendManager = require('./friendManager');
 
 let currentChat = null;
 
@@ -127,10 +128,9 @@ const chatManager = Object.create(null, {
                 }
                 $structure.append($message)
                 $('.friends__messages--post').append($structure);
+
+                friendManager.scrollToBottom();
             })
-
-
-
         }
     },
 })

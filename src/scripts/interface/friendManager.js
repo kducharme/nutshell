@@ -94,10 +94,10 @@ const friendManager = Object.create(null, {
                 .addClass('friends__list--friendName')
                 .text(friend.name);
                 
-                // const $count = $('<p>')
-                // .addClass('friends__list--friendMessages')
-                // .text(`${Math.floor(Math.random() * 10)}`);
-                // // TODO - Hook up counter of all messages
+                const $count = $('<p>')
+                .addClass('friends__list--notification')
+                .attr('id', `count__${friend.id}`)
+                // TODO - Hook up counter of all messages
                 
                 $structure.append($profile, $name);
                 $printArea.append($structure);
