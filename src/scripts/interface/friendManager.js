@@ -28,6 +28,15 @@ const friendManager = Object.create(null, {
             return $friendList;
         }
     },
+    friendListHeader: {
+        value: function () {
+            const $friendHeader = $('<span>')
+                .addClass('friends__list--header')
+                .attr('id', 'friendHeader');
+
+            return $friendHeader;
+        }
+    },
     getListOfFriends: {
         value: function (friends) {
             // Function requirements

@@ -24,7 +24,9 @@ const notificationManager = Object.create(null, {
             // Filters the new messages by:
             // 1. Whether or not the two people are friends
             // 2. Whether or not the recipient is not currently chatting with the sender
-            
+
+            console.log(message)
+
             const activeChat = $('.activeChat')[0].id;
             const currentUser = getCurrentUser().uid;
             const activeUserFriendList = Array.from($('.friends__list')[0].childNodes);
@@ -42,7 +44,7 @@ const notificationManager = Object.create(null, {
                             sender = message.sender;
                         }
                     }
-                    else{
+                    else {
                         console.log('not my friend :(');
                     }
                 })
@@ -53,29 +55,22 @@ const notificationManager = Object.create(null, {
     showNotification: {
         value: function (sender) {
             // Posts notification if a new message is sent by a friend that the user is not currently speaking with
-            const $sender = $(`#${sender}`)
-            const $printArea = $sender[0];
-
-            const notify = document.createElement('span')
-            notify.classList.add('notification');
-
-                console.log(notify)
-            
-            $printArea.append(notify);
+            if (sender) {
+                const $sender = $(`#${sender}`)
+                const $printArea = $sender[0];
+                const notify = document.createElement('span')
+                notify.classList.add('notification');
+                $printArea.append(notify);
+            }
         }
     },
     removeNotification: {
-        value: function (sender) {
-            // Posts notification if a new message is sent by a friend that the user is not currently speaking with
-            const $sender = $(`#${sender}`)
-            const $printArea = $sender[0];
-
-            const notify = document.createElement('span')
-            notify.classList.add('notification');
-
-                console.log(notify)
-            
-            $printArea.append(notify);
+        value: function ($channel) {
+            // Removes notification when the channel is clicked
+            if ($channel.childNodes.length === 3) {
+                $channel.childNodes[2].remove();
+            }
+            // $($channel).remove($('.notification'));
         }
     },
     postNewMessage: {
