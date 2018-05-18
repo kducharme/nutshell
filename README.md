@@ -2,9 +2,8 @@
 A simple, real-time chat application to direct message friends.
 
 **Demo account:**
-* [Visit app](nutshell-kd.firebaseapp.com)
-* username: ducharme.kyle@gmail.com
-* password: test123
+* Link: [Click here](nutshell-kd.firebaseapp.com)
+* Login: ducharme.kyle@gmail.com / test123
 
 **Tech used:**
 1. HTML/CSS
