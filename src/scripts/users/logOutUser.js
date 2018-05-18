@@ -4,19 +4,30 @@ const getCurrentUser = require('../users/getCurrentUser')
 
 // Logs out user
 const logOutUser = (user) => {
-    $('#currentUser').empty();
-
     // TODO => Create dropdown for log out feature
     const $printArea = $('#currentUser');
+    const $structure = $('<span>')
+        .addClass('logout');
+    
+    const $user = $('<p>')
+        .addClass('logout__user')
+        .text(user.email);
+
     const $button = $('<button>')
         .attr('id', 'logout')
-        .addClass('logOut')
-        .text(user.email)
+        .addClass('logout__button')
+        .text(`(Log out)`)
         .on('click', function () {
             firebase.auth().signOut()
-                .then($('#data').empty());
+                .then($('#data').empty())
+                .then($('.nav__left').empty())
+                .then($('.logout').empty());
+                
         });
-    $printArea.append($button)
+
+    $structure.append($user, $button)
+
+    $printArea.append($structure)
 }
 
 // logOutUser()
