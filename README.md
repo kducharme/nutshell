@@ -1,5 +1,10 @@
 # nutshell
-nutshell is a dashboard that helps people organize daily tasks, events, news article, friends, and chat messages.
+A simple, real-time chat application to direct message friends.
+
+**Demo account:**
+* [Visit app](nutshell-kd.firebaseapp.com)
+* username: ducharme.kyle@gmail.com
+* password: test123
 
 **Tech used:**
 1. HTML/CSS
