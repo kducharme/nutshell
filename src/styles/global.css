@@ -168,12 +168,6 @@ nav {
     width: calc(100vw);
 }
 
-/* .content__tasks {
-    flex-basis: 360px;
-    border-left: 1px solid var(--borderColor);
-    background-color: var(--fillColor);
-} */
-
 /* Friends view */
 
 .friends {
