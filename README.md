@@ -2,7 +2,7 @@
 A simple, real-time chat application to direct message friends.
 
 **Demo account:**
-* Link: [Click here](nutshell-kd.firebaseapp.com)
+* Link: [Click here](https://www.nutshell-kd.firebaseapp.com)
 * Login: ducharme.kyle@gmail.com / test123
 
 **Tech used:**
