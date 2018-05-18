@@ -14,6 +14,14 @@ const friendManager = Object.create(null, {
             const $friendList = friendManager.friendListStructure();
             const $friendMessages = friendManager.friendMessages();
 
+            const $header = friendManager.friendListHeader()
+
+            console.log($header);
+            
+            $friendList.append($header);
+            
+            console.log($friendList)
+
             // Appends everything to section
             $structure.append($friendList, $friendMessages);
             $printArea.append($structure);
@@ -21,7 +29,8 @@ const friendManager = Object.create(null, {
     },
     friendListStructure: {
         value: function () {
-            const $friendList = $('<span>')
+            
+            const $friendList = $('<div>')
                 .addClass('friends__list')
                 .attr('id', 'friendList');
 
@@ -30,11 +39,11 @@ const friendManager = Object.create(null, {
     },
     friendListHeader: {
         value: function () {
-            const $friendHeader = $('<span>')
+            const $header = $('<div>')
                 .addClass('friends__list--header')
                 .attr('id', 'friendHeader');
 
-            return $friendHeader;
+            return $header;
         }
     },
     getListOfFriends: {
@@ -75,8 +84,8 @@ const friendManager = Object.create(null, {
                             }
                         })
                     })
-                    friendManager.displayFriends(friendList)
-                })
+                friendManager.displayFriends(friendList)
+            })
         }
     },
     displayFriends: {
@@ -86,12 +95,12 @@ const friendManager = Object.create(null, {
             // Creates and prints friends to the friends list
             friendList.forEach(friend => {
                 const $structure = $('<span>')
-                .addClass('friends__list--friendRow')
-                .attr('id', friend.id)
-                .on('click', function(e) {
-                    chatManager.activeChat(e)  
-                });
-                
+                    .addClass('friends__list--friendRow')
+                    .attr('id', friend.id)
+                    .on('click', function (e) {
+                        chatManager.activeChat(e)
+                    });
+
                 const nameArray = friend.name.split(' ');
                 const initials = `${nameArray[0].charAt(0)}${nameArray[1].charAt(0)}`
 
@@ -100,19 +109,19 @@ const friendManager = Object.create(null, {
                     .text(initials);
 
                 const $name = $('<p>')
-                .addClass('friends__list--friendName')
-                .text(friend.name);
-                
+                    .addClass('friends__list--friendName')
+                    .text(friend.name);
+
                 const $count = $('<p>')
-                .addClass('friends__list--notification')
-                .attr('id', `count__${friend.id}`)
+                    .addClass('friends__list--notification')
+                    .attr('id', `count__${friend.id}`)
                 // TODO - Hook up counter of all messages
-                
+
                 $structure.append($profile, $name);
                 $printArea.append($structure);
                 friendManager.countFriends(friendList.length)
 
-                
+
             })
             // Loads active chat
             chatManager.activeChat();
@@ -120,14 +129,15 @@ const friendManager = Object.create(null, {
     },
     countFriends: {
         value: function (count) {
-            const $print = $('#id__Friends')
-                .html(count);
+            $('#friendCount')
+                .html(`(${count} total)`);
         }
     },
     friendMessages: {
         value: function () {
-            const $friendMessages = $('<span>');
-            $friendMessages.addClass('friends__messages');
+            const $friendMessages = $('<span>')
+                .addClass('friends__messages');
+
             const writeMessages = friendManager.writeMessages();
             const showMessages = friendManager.showMessages();
 
@@ -147,19 +157,33 @@ const friendManager = Object.create(null, {
     writeMessages: {
         value: function () {
             const chatManager = require('./chatManager');
+            const $writeArea = $('<span>')
+                .addClass('friends__messages--container');
+
             // Creates area where messages are written
-            const $writeArea = $('<input>');
-            $writeArea.attr('placeholder', 'Enter message');
-            $writeArea.addClass('friends__messages--write');
-            $writeArea.keypress(function (e) {
-                if ($writeArea.val()) {
+            const $write = $('<input>')
+                .attr('placeholder', 'Enter message')
+                .addClass('friends__messages--write')
+                .keypress(function (e) {
+                if ($write.val()) {
                     if (e.which === 13) {
-                        chatManager.createMessage($writeArea.val());
+                        chatManager.createMessage($write.val());
                         friendManager.clearWriteArea();
                         friendManager.scrollToBottom();
                     }
                 }
             })
+            const $emoji = $('<img>')
+                .attr('src', 'img/emoji.svg')
+                .addClass('friends__messages--emoji')
+                .mouseenter(function() {
+                    $('.friends__messages--emoji').attr('src', 'img/emojidark.svg')
+                })
+                .mouseleave(function() {
+                    $('.friends__messages--emoji').attr('src', 'img/emoji.svg')
+                });
+            
+            $writeArea.append($write, $emoji)
             return $writeArea;
         }
     },

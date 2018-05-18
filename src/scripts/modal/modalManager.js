@@ -50,7 +50,7 @@ const modalManager = Object.create(null, {
                 $('.modal__bg').hide();
             }))
             const modal = modalFactory(title, details, inputs, button);
-            headerManager.closeDropdown();
+            // headerManager.closeDropdown();
         }
     },
     // Adding new task

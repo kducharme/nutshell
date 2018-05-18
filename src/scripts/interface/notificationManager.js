@@ -25,8 +25,6 @@ const notificationManager = Object.create(null, {
             // 1. Whether or not the two people are friends
             // 2. Whether or not the recipient is not currently chatting with the sender
 
-            console.log(message)
-
             const activeChat = $('.activeChat')[0].id;
             const currentUser = getCurrentUser().uid;
             const activeUserFriendList = Array.from($('.friends__list')[0].childNodes);

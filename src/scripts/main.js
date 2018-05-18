@@ -22,7 +22,6 @@ auth.onAuthStateChanged(firebaseUser => {
         
         // Loads page sub-nav
         headerManager.createStructure();
-        headerManager.navigateTabs();
         
         // Loads default page block
         friendManager.friendBlock();
