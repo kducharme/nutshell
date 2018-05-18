@@ -56,7 +56,7 @@ nav {
     background-color: var(--fillColor);
     border-right: 1px solid var(--borderColor);
     border-bottom: 1px solid var(--borderColor);
-    width: 349px;
+    width: 350px;
     display: flex;
     justify-content: space-between;
     align-items: center;
