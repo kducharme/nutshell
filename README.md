@@ -1,5 +1,5 @@
 # nutshell
-A simple, real-time chat application to direct message friends.
+Nuthsell is a simple, real-time chat application to direct message friends. The app was built as a project during Nashville Software School to better understand web sockets, notifications, and ERDs.
 
 **Demo account:**
 * Link: [Click here](https://nutshell-kd.firebaseapp.com/)
